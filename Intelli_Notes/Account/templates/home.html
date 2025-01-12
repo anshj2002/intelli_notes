@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Welcome to Intelli-Notes</h1>
+    {% if user_data %}
+        <p>Hello, {{ user_data.given_name }}!</p>
+        <p>Your email is: {{ user_data.email }}</p>
+        <a href="{% url 'sign_out' %}">Sign Out</a>
+    {% else %}
+        <p>You are not signed in. Please <a href="{% url 'sign_in' %}">sign in</a>.</p>
+    {% endif %}
+{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome to Intelli-Notes</h1>
+    
+    {% if user_data %}
+        <p>Hello, {{ user_data.given_name }}!</p>
+        <p>Your email is: {{ user_data.email }}</p>
+        <a href="{% url 'sign_out' %}">Sign Out</a>
+    {% else %}
+        <p>You are not signed in. Please <a href="{% url 'sign_in' %}">sign in</a>.</p>
+    {% endif %}
+
+</body>
+</html>

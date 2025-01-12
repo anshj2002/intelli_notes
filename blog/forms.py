@@ -2,6 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from .models import Post
 from django.core.exceptions import ValidationError
+import os
 
 
 # creating a form for custom validation
@@ -27,11 +28,10 @@ class CreateViewForm(forms.ModelForm):
                 # self.add_error(None, ValidationError('The title should be different')) # non-field error
                 self.add_error('content', ValidationError('The message is too short')) # title field error
 
-#   renaming uploaded images
-#   def image_file_name(instance, filename):
-#       ext = filename.split('.')[-1]
-#       filename = "%s_%s.%s" % (instance.date_posted, instance.title, ext) # %s correspond to instances to pass to the new file name
-#       return os.path.join('images', filename)
+    def image_file_name(instance, filename):
+        ext = filename.split('.')[-1]
+        filename = "%s_%s.%s" % (instance.date_posted, instance.title, ext) # %s correspond to instances to pass to the new file name
+        return os.path.join('images', filename)
 
 
 class UpdateViewForm(forms.ModelForm):
